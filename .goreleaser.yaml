@@ -41,3 +41,5 @@ release:
     name: gradmotion-cli
   draft: false
   prerelease: auto
+  extra_files:
+    - glob: skills/gm-cli/SKILL.md
