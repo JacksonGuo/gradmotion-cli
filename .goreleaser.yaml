@@ -35,12 +35,9 @@ checksum:
 changelog:
   use: git
 
-# 发布到自建 GitLab (8.141.22.226)
 release:
-  gitlab:
-    owner: Jacky
+  github:
+    owner: JacksonGuo
     name: gradmotion-cli
-
-gitlab_urls:
-  api: "http://8.141.22.226/api/v4"
-  download: "http://8.141.22.226"
+  draft: false
+  prerelease: auto
