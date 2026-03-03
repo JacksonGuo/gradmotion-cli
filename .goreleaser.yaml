@@ -1,0 +1,46 @@
+version: 2
+
+project_name: gradmotion-cli
+
+builds:
+  - id: gm
+    main: ./cmd/gradmotion
+    binary: gm
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+      - linux
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+
+archives:
+  - formats: [tar.gz]
+    name_template: >-
+      {{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+
+checksum:
+  name_template: checksums.txt
+
+changelog:
+  use: git
+
+# 发布到自建 GitLab (8.141.22.226)
+release:
+  gitlab:
+    owner: Jacky
+    name: gradmotion-cli
+
+gitlab_urls:
+  api: "http://8.141.22.226/api/v4"
+  download: "http://8.141.22.226"
